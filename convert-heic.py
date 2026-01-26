@@ -50,20 +50,24 @@ def main():
     register_heif_opener()  # Register the HEIF file format with PIL
 
     print(
-        """
-          =====================================
-            HEIC to JPG Converter
-          =====================================
-          """
+"""
+=====================================
+HEIC to JPG Converter
+====================================="""
     )
 
     while True:
         input_type = input(
-            "Would you like to convert a folder or individual files? (folder/files) > "
-        )
+"""Choose an option on how to select HEIC files to convert:
 
+    1. Select a folder containing HEIC files
+    2. Select individual HEIC files
+
+Type 'exit' or 'quit' to close the program. \n > """ 
+)
+        print(input_type, type(input_type))
         match input_type.lower():
-            case "folder":
+            case "1":
                 try:
                     folder = filedialog.askdirectory(
                         title="Select folder containing HEIC files to convert."
@@ -73,16 +77,18 @@ def main():
                     logging.info("Folder not found. Please try again.")
                     continue
                 break
-            case "files":
+            case "2":
                 files = filedialog.askopenfilenames(
                     title="Select HEIC files to convert."
                 )
                 convert_files(files)
                 break
-            case "exit", "quit":
+            case "exit":
+                break
+            case "quit":
                 break
             case _:
-                logging.info("Invalid input. Please enter 'folder' or 'files'.")
+                logging.info("Invalid input.")
                 continue
 
     input("\nPress enter to exit.")
