@@ -1,10 +1,33 @@
 [project]
-name = "heic-to-jpeg-converter"
+name = "file-converter"
 version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
-requires-python = ">=3.14"
+description = "Local file type converter with Textual TUI"
+authors = [{ name = "Your Name", email = "your.email@example.com" }]
+requires-python = ">=3.10"
 dependencies = [
-    "pillow>=12.1.0",
-    "pillow-heif>=1.1.1",
+    "textual>=0.80.0",
+    "pillow>=10.0.0",
+    "pillow-heif>=0.16.0",
+    "ffmpeg-python>=0.2.0",
+    "pypdf>=4.0.0",
+    "python-docx>=1.1.0",
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
 ]
+
+[project.scripts]
+file-converter = "src.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.coverage.run]
+source = ["src"]
